@@ -35,20 +35,7 @@ const Home = () => {
               }
             >
               <BagIcon name="handbag" size={24} color="#fff" />
-              <View
-                style={{
-                  width: 22,
-                  height: 22,
-                  borderRadius: 22 / 2,
-                  backgroundColor: "#f9b023",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  position: "absolute",
-                  top: "-25%",
-                  right: "-40%",
-                }}
-              >
+              <View style={styles.AddtoCartCountContainer}>
                 <Text
                   style={{ color: "#fff", fontWeight: "600", fontSize: 14 }}
                 >
@@ -238,5 +225,17 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "400",
     color: "#1E222B",
+  },
+  AddtoCartCountContainer: {
+    width: 22,
+    height: 22,
+    borderRadius: 22 / 2,
+    backgroundColor: "#f9b023",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+    top: "-25%",
+    right: "-40%",
   },
 });
