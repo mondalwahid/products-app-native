@@ -71,13 +71,13 @@ const TabNavigation = () => {
           bottom: 10,
           left: 20,
           right: 20,
-          elevation: route.name === "Home" ? 8 : 0, // Elevation for the selected tab
+          elevation: route.name === "Home" ? 8 : 0,
           backgroundColor: "#ffffff",
           borderRadius: 15,
           height: 70,
           ...styles.shadow,
         },
-        tabBarActiveTintColor: route.name === "Home" ? "#2a4ba0" : "#999", // Color for the selected tab
+        tabBarActiveTintColor: route.name === "Home" ? "#2a4ba0" : "#999",
       })}
     >
       <Tab.Screen

@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import Gobackicon from "@expo/vector-icons/Ionicons";
 import BagIcon from "@expo/vector-icons/SimpleLineIcons";
@@ -12,6 +12,13 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../src/redux/cartSlice";
 import { useSelector } from "react-redux";
 import { selectCartItems } from "../src/redux/cartSlice";
+import { Font } from "expo-font";
+
+export const loadFonts = async () => {
+  await Font.loadAsync({
+    "manrope-regular": require("../assets/fonts/Manrope-Regular.ttf"),
+  });
+};
 
 const ProductDetails = () => {
   const cartItems = useSelector(selectCartItems);
@@ -19,15 +26,17 @@ const ProductDetails = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
-  const {
-    data: productDetails,
-    isLoading,
-    error,
-  } = useGetProductDetailsQuery({ id: route.params.id });
+  const { data: productDetails, isLoading, error } = useGetProductDetailsQuery({
+    id: route.params.id,
+  });
 
   function handleAddToCart(product) {
     dispatch(addToCart(product));
   }
+
+  useEffect(() => {
+    loadFonts();
+  }, []);
 
   return (
     <SafeAreaView>
@@ -84,7 +93,12 @@ const ProductDetails = () => {
                 }}
               >
                 <Text
-                  style={{ color: "#fff", fontWeight: "600", fontSize: 14 }}
+                  style={{
+                    color: "#fff",
+                    fontWeight: "600",
+                    fontSize: 14,
+                    fontFamily: "manrope-regular",
+                  }}
                 >
                   {cartItems?.length}
                 </Text>
@@ -94,10 +108,24 @@ const ProductDetails = () => {
 
           {/* Title and subtitle */}
           <View>
-            <Text style={{ fontSize: 50, fontWeight: "300", color: "#1E222B" }}>
+            <Text
+              style={{
+                fontSize: 50,
+                fontWeight: "300",
+                color: "#1E222B",
+                fontFamily: "manrope-regular",
+              }}
+            >
               {productDetails?.title}
             </Text>
-            <Text style={{ fontSize: 50, fontWeight: "800", color: "#1E222B" }}>
+            <Text
+              style={{
+                fontSize: 50,
+                fontWeight: "800",
+                color: "#1E222B",
+                fontFamily: "manrope-regular",
+              }}
+            >
               by {productDetails?.brand}
             </Text>
           </View>
@@ -117,7 +145,14 @@ const ProductDetails = () => {
               emptyColor="#000"
               starSize={20}
             />
-            <Text style={{ color: "#A1A1AB", fontSize: 14, fontWeight: "400" }}>
+            <Text
+              style={{
+                color: "#A1A1AB",
+                fontSize: 14,
+                fontWeight: "400",
+                fontFamily: "manrope-regular",
+              }}
+            >
               110 Reviews
             </Text>
           </View>
@@ -132,7 +167,8 @@ const ProductDetails = () => {
             marginTop: 20,
           }}
         >
-          <Text>Product slider here</Text>
+          {/* <Slider /> */}
+          <Text style={{ fontFamily: "manrope-regular" }}>poiuytrewq</Text>
         </View>
 
         {/* Prices, discounts and checkout and add to cart buttons */}
@@ -145,10 +181,24 @@ const ProductDetails = () => {
               alignItems: "center",
             }}
           >
-            <Text style={{ fontWeight: "700", fontSize: 16, color: "#2A4BA0" }}>
+            <Text
+              style={{
+                fontWeight: "700",
+                fontSize: 16,
+                color: "#2A4BA0",
+                fontFamily: "manrope-regular",
+              }}
+            >
               ${productDetails?.price}
             </Text>
-            <Text style={{ fontWeight: "400", fontSize: 16, color: "#2A4BA0" }}>
+            <Text
+              style={{
+                fontWeight: "400",
+                fontSize: 16,
+                color: "#2A4BA0",
+                fontFamily: "manrope-regular",
+              }}
+            >
               /KG
             </Text>
             <View
@@ -160,7 +210,7 @@ const ProductDetails = () => {
                 marginLeft: 20,
               }}
             >
-              <Text style={{ color: "#FAFBFD" }}>
+              <Text style={{ color: "#FAFBFD", fontFamily: "manrope-regular" }}>
                 {Math.ceil(productDetails?.discountPercentage)}% OFF
               </Text>
             </View>
@@ -196,6 +246,7 @@ const ProductDetails = () => {
                   color: "#2A4BA0",
                   fontSize: 14,
                   fontWeight: "600",
+                  fontFamily: "manrope-regular",
                 }}
               >
                 add to cart
@@ -220,6 +271,7 @@ const ProductDetails = () => {
                   color: "#fff",
                   fontSize: 14,
                   fontWeight: "600",
+                  fontFamily: "manrope-regular",
                 }}
               >
                 buy now
@@ -229,7 +281,14 @@ const ProductDetails = () => {
 
           {/* Details and description */}
           <View>
-            <Text style={{ color: "#1E222B", fontSize: 16, fontWeight: "400" }}>
+            <Text
+              style={{
+                color: "#1E222B",
+                fontSize: 16,
+                fontWeight: "400",
+                fontFamily: "manrope-regular",
+              }}
+            >
               Details
             </Text>
             <Text
@@ -238,6 +297,7 @@ const ProductDetails = () => {
                 fontSize: 16,
                 fontWeight: "400",
                 marginTop: 5,
+                fontFamily: "manrope-regular",
               }}
             >
               {productDetails?.description}

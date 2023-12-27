@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
+import { Font } from "expo-font";
+
+export const loadFonts = async () => {
+  await Font.loadAsync({
+    "manrope-regular": require("../../assets/fonts/Manrope-Regular.ttf"),
+  });
+};
 
 const Bottombar = () => {
+  useEffect(() => {
+    loadFonts();
+  }, []);
   return (
     <View
       style={{
@@ -31,10 +41,24 @@ const Bottombar = () => {
             alignItems: "center",
           }}
         >
-          <Text style={{ color: "#616A7D", fontSize: 14, fontWeight: "400" }}>
+          <Text
+            style={{
+              color: "#616A7D",
+              fontSize: 14,
+              fontWeight: "400",
+              fontFamily: "manrope-regular",
+            }}
+          >
             Subtotal
           </Text>
-          <Text style={{ color: "#1E222B", fontSize: 14, fontWeight: "500" }}>
+          <Text
+            style={{
+              color: "#1E222B",
+              fontSize: 14,
+              fontWeight: "500",
+              fontFamily: "manrope-regular",
+            }}
+          >
             $35.96
           </Text>
         </View>
@@ -47,10 +71,24 @@ const Bottombar = () => {
             alignItems: "center",
           }}
         >
-          <Text style={{ color: "#616A7D", fontSize: 14, fontWeight: "400" }}>
+          <Text
+            style={{
+              color: "#616A7D",
+              fontSize: 14,
+              fontWeight: "400",
+              fontFamily: "manrope-regular",
+            }}
+          >
             Delivery
           </Text>
-          <Text style={{ color: "#1E222B", fontSize: 14, fontWeight: "500" }}>
+          <Text
+            style={{
+              color: "#1E222B",
+              fontSize: 14,
+              fontWeight: "500",
+              fontFamily: "manrope-regular",
+            }}
+          >
             $2.00
           </Text>
         </View>
@@ -63,10 +101,24 @@ const Bottombar = () => {
             alignItems: "center",
           }}
         >
-          <Text style={{ color: "#616A7D", fontSize: 14, fontWeight: "400" }}>
+          <Text
+            style={{
+              color: "#616A7D",
+              fontSize: 14,
+              fontWeight: "400",
+              fontFamily: "manrope-regular",
+            }}
+          >
             Total
           </Text>
-          <Text style={{ color: "#1E222B", fontSize: 14, fontWeight: "500" }}>
+          <Text
+            style={{
+              color: "#1E222B",
+              fontSize: 14,
+              fontWeight: "500",
+              fontFamily: "manrope-regular",
+            }}
+          >
             $37.96
           </Text>
         </View>
@@ -87,6 +139,7 @@ const Bottombar = () => {
               color: "#fff",
               fontSize: 14,
               fontWeight: "600",
+              fontFamily: "manrope-regular",
             }}
           >
             Proceed To checkout

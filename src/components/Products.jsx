@@ -149,10 +149,12 @@ const styles = StyleSheet.create({
     color: "#1E222B",
     fontSize: 14,
     fontWeight: "600",
+    fontFamily: "manrope-regular",
   },
   TitleStyles: {
     color: "#616A7D",
     fontSize: 12,
     fontWeight: "400",
+    fontFamily: "manrope-regular",
   },
 });

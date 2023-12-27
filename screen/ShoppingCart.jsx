@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   View,
   Text,
@@ -17,11 +17,22 @@ import CartHeader from "../src/components/CartHeader";
 import Bottombar from "../src/components/Bottombar";
 import { useDispatch } from "react-redux";
 import { decreaseQuantity, increaseQuantity } from "../src/redux/cartSlice";
+import { Font } from "expo-font";
+
+export const loadFonts = async () => {
+  await Font.loadAsync({
+    "manrope-regular": require("../assets/fonts/Manrope-Regular.ttf"),
+  });
+};
 
 const ShoppingCart = () => {
   const navigation = useNavigation();
   const cartItems = useSelector(selectCartItems);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    loadFonts();
+  }, []);
   return (
     <SafeAreaView>
       <View style={{ position: "relative" }}>
@@ -88,7 +99,9 @@ const ShoppingCart = () => {
                 display: "center",
               }}
             >
-              <Text>Nothing Added to the Cart!</Text>
+              <Text style={{ fontFamily: "manrope-regular" }}>
+                Nothing Added to the Cart!
+              </Text>
             </View>
           )}
         </ScrollView>
@@ -136,11 +149,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "500",
     color: "#1E222B",
+    fontFamily: "manrope-regular",
   },
   PriceStyles: {
     fontSize: 14,
     fontWeight: "400",
     color: "#1E222B",
+    fontFamily: "manrope-regular",
   },
   CounterContainer: {
     display: "flex",
@@ -171,6 +186,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "500",
     color: "#1E222B",
+    fontFamily: "manrope-regular",
   },
   DividerStyles: {
     borderWidth: 0.5,

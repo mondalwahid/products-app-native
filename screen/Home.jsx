@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Text, View } from "react-native";
@@ -10,16 +10,27 @@ import { useGetProductsListQuery } from "../src/redux/products";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 import { selectCartItems } from "../src/redux/cartSlice";
+import { Font } from "expo-font";
+
+export const loadFonts = async () => {
+  await Font.loadAsync({
+    "manrope-regular": require("../assets/fonts/Manrope-Regular.ttf"),
+  });
+};
 
 const Home = () => {
   const cartItems = useSelector(selectCartItems);
   const navigation = useNavigation();
   const { data: productList, isLoading, error } = useGetProductsListQuery();
+
+  useEffect(() => {
+    loadFonts();
+  }, []);
   return (
     <SafeAreaView>
       <ScrollView
         style={{ height: "100%", backgroundColor: "#fff" }}
-        contentContainerStyle={{ paddingBottom: 30 }}
+        contentContainerStyle={{ paddingBottom: 100 }}
       >
         <View style={styles.MainHeaderContainer}>
           {/* Name header */}
@@ -37,7 +48,12 @@ const Home = () => {
               <BagIcon name="handbag" size={24} color="#fff" />
               <View style={styles.AddtoCartCountContainer}>
                 <Text
-                  style={{ color: "#fff", fontWeight: "600", fontSize: 14 }}
+                  style={{
+                    color: "#fff",
+                    fontWeight: "600",
+                    fontSize: 14,
+                    fontWeight: "manrope-regular",
+                  }}
                 >
                   {cartItems?.length}
                 </Text>
@@ -158,6 +174,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 22,
     fontWeight: "600",
+    fontFamily: "manrope-regular",
   },
   MainSearcBarContainer: {
     backgroundColor: "#153175",
@@ -169,7 +186,8 @@ const styles = StyleSheet.create({
   },
   PlaceHolderStyles: {
     color: "#8891A5",
-    fontSize: 14,
+    fontSize: 15,
+    fontWeight: "manrope-regular",
   },
   DropdownContainer: {
     display: "flex",
@@ -182,11 +200,13 @@ const styles = StyleSheet.create({
     fontWeight: "800",
     fontSize: 11,
     textTransform: "uppercase",
+    fontFamily: "manrope-regular",
   },
   SubDropdownText: {
     fontWeight: "500",
     fontSize: 14,
     color: "#F8F9FB",
+    fontFamily: "manrope-regular",
   },
   OfferSliderContainer: {
     height: 123,
@@ -214,21 +234,25 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "#fff",
     fontWeight: "300",
+    fontFamily: "manrope-regular",
   },
   OfferTextTwo: {
     fontWeight: "800",
     fontSize: 26,
     color: "#fff",
+    fontFamily: "manrope-regular",
   },
   OffertextThree: {
     fontSize: 13,
     fontWeight: "500",
     color: "#fff",
+    fontFamily: "manrope-regular",
   },
   ProductHeaderText: {
     fontSize: 30,
     fontWeight: "400",
     color: "#1E222B",
+    fontFamily: "manrope-regular",
   },
   AddtoCartCountContainer: {
     width: 22,
