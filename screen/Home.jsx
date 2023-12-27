@@ -121,7 +121,11 @@ const Home = () => {
         {/* Recommended products list */}
         <View style={{ paddingLeft: 20 }}>
           <Text style={styles.ProductHeaderText}>Recommended</Text>
-          <Products listData={productList} />
+          <Products
+            listData={productList}
+            isLoading={isLoading}
+            error={error}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>

@@ -10,16 +10,18 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
 import { selectCartItems } from "../src/redux/cartSlice";
-
 import NegativeIcon from "@expo/vector-icons/AntDesign";
 import PlusIcon from "@expo/vector-icons/AntDesign";
 import { useNavigation } from "@react-navigation/native";
 import CartHeader from "../src/components/CartHeader";
 import Bottombar from "../src/components/Bottombar";
+import { useDispatch } from "react-redux";
+import { decreaseQuantity, increaseQuantity } from "../src/redux/cartSlice";
 
 const ShoppingCart = () => {
   const navigation = useNavigation();
   const cartItems = useSelector(selectCartItems);
+  const dispatch = useDispatch();
   return (
     <SafeAreaView>
       <View style={{ position: "relative" }}>
@@ -36,43 +38,67 @@ const ShoppingCart = () => {
           <CartHeader navigation={navigation} cartItems={cartItems} />
 
           {/* Cart content */}
-          {cartItems?.map((e) => {
-            return (
-              <>
-                <View style={styles.MainCartContainer} key={e?.id}>
-                  <View style={styles.SubCartContainer}>
-                    <Image
-                      source={require("../assets/Image-icon-2.png")}
-                      resizeMode={"cover"}
-                      style={{ width: 30, height: 30 }}
-                    />
-                    <View style={{ marginLeft: 25 }}>
-                      <Text style={styles.TitleStyles}>{e?.title}</Text>
-                      <Text style={styles.PriceStyles}>${e?.price}</Text>
+          {cartItems?.length !== 0 ? (
+            cartItems?.map((e, index) => {
+              return (
+                <>
+                  <View style={styles.MainCartContainer} key={index}>
+                    <View style={styles.SubCartContainer}>
+                      <Image
+                        source={{ uri: e?.thumbnail }}
+                        resizeMode={"cover"}
+                        style={{ width: 30, height: 30 }}
+                      />
+                      <View style={{ marginLeft: 25 }}>
+                        <Text style={styles.TitleStyles}>{e?.title}</Text>
+                        <Text style={styles.PriceStyles}>${e?.price}</Text>
+                      </View>
+                    </View>
+
+                    {/* Increment and decrement counter */}
+                    <View style={styles.CounterContainer}>
+                      <TouchableOpacity
+                        style={styles.DecrementContainer}
+                        onPress={() => dispatch(decreaseQuantity(e?.id))}
+                      >
+                        <NegativeIcon name="minus" size={24} color="#000" />
+                      </TouchableOpacity>
+                      <Text style={styles.CounterTextStyles}>
+                        {e?.quantity}
+                      </Text>
+                      <TouchableOpacity
+                        style={styles.IncrementContainer}
+                        onPress={() => dispatch(increaseQuantity(e?.id))}
+                      >
+                        <PlusIcon name="plus" size={24} color="#000" />
+                      </TouchableOpacity>
                     </View>
                   </View>
-
-                  {/* Increment and decrement counter */}
-                  <View style={styles.CounterContainer}>
-                    <TouchableOpacity style={styles.DecrementContainer}>
-                      <NegativeIcon name="minus" size={24} color="#000" />
-                    </TouchableOpacity>
-                    <Text style={styles.CounterTextStyles}>1</Text>
-                    <TouchableOpacity style={styles.IncrementContainer}>
-                      <PlusIcon name="plus" size={24} color="#000" />
-                    </TouchableOpacity>
-                  </View>
-                </View>
-                <View style={styles.DividerStyles} />
-              </>
-            );
-          })}
+                  <View style={styles.DividerStyles} />
+                </>
+              );
+            })
+          ) : (
+            <View
+              style={{
+                height: "100%",
+                width: "100%",
+                justifyContent: "center",
+                alignItems: "center",
+                display: "center",
+              }}
+            >
+              <Text>Nothing Added to the Cart!</Text>
+            </View>
+          )}
         </ScrollView>
 
         {/* Bottom Bar below */}
-        <View style={styles.BottombarContainer}>
-          <Bottombar />
-        </View>
+        {cartItems?.length !== 0 ? (
+          <View style={styles.BottombarContainer}>
+            <Bottombar />
+          </View>
+        ) : null}
       </View>
     </SafeAreaView>
   );

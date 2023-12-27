@@ -1,12 +1,19 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Text, View, Image, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+  ActivityIndicator,
+} from "react-native";
 import AddToCartIcon from "@expo/vector-icons/AntDesign";
 import WishlistIcon from "@expo/vector-icons/AntDesign";
 import { useNavigation } from "@react-navigation/native";
 import { addToCart } from "../redux/cartSlice";
 
-const Products = ({ listData }) => {
+const Products = ({ listData, isLoading, error }) => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -22,43 +29,70 @@ const Products = ({ listData }) => {
   }
   return (
     <View style={styles.MainProductsContainer}>
-      {listData?.products?.map((e) => {
-        return (
-          <TouchableOpacity
-            onPress={() => handleProductNavigation(e?.id)}
-            key={e?.id}
-            style={styles.SubProductsContainer}
-          >
+      {error ? (
+        <View
+          style={{
+            width: "100%",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+            height: 100,
+          }}
+        >
+          <Text>Something went wrong!</Text>
+        </View>
+      ) : isLoading ? (
+        <View
+          style={{
+            width: "100%",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+            height: 100,
+          }}
+        >
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
+      ) : (
+        listData?.products?.map((e) => {
+          return (
             <TouchableOpacity
               activeOpacity={0.7}
-              style={styles.WishlistMainContainer}
+              onPress={() => handleProductNavigation(e?.id)}
+              key={e?.id}
+              style={styles.SubProductsContainer}
             >
-              <WishlistIcon name="hearto" size={24} color="red" />
-            </TouchableOpacity>
-            <View style={styles.ImageContainer}>
-              <Image
-                source={{ uri: e?.thumbnail }}
-                resizeMode={"cover"}
-                style={styles.ImageStyles}
-              />
-            </View>
-
-            {/* Product title and prices */}
-            <View style={styles.ProductAndTitlePricesContainer}>
-              <View>
-                <Text style={styles.PrcieStyles}>${e?.price}</Text>
-                <Text style={styles.TitleStyles}>{e?.title}</Text>
-              </View>
               <TouchableOpacity
                 activeOpacity={0.7}
-                onPress={() => handleAddToCartItem(e)}
+                style={styles.WishlistMainContainer}
               >
-                <AddToCartIcon name="pluscircle" size={24} color="#2a4b9f" />
+                <WishlistIcon name="hearto" size={24} color="red" />
               </TouchableOpacity>
-            </View>
-          </TouchableOpacity>
-        );
-      })}
+              <View style={styles.ImageContainer}>
+                <Image
+                  source={{ uri: e?.thumbnail }}
+                  resizeMode={"cover"}
+                  style={styles.ImageStyles}
+                />
+              </View>
+
+              {/* Product title and prices */}
+              <View style={styles.ProductAndTitlePricesContainer}>
+                <View>
+                  <Text style={styles.PrcieStyles}>${e?.price}</Text>
+                  <Text style={styles.TitleStyles}>{e?.title}</Text>
+                </View>
+                <TouchableOpacity
+                  activeOpacity={0.7}
+                  onPress={() => handleAddToCartItem(e)}
+                >
+                  <AddToCartIcon name="pluscircle" size={24} color="#2a4b9f" />
+                </TouchableOpacity>
+              </View>
+            </TouchableOpacity>
+          );
+        })
+      )}
     </View>
   );
 };
