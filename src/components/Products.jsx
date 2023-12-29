@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {
   Text,
@@ -12,6 +12,12 @@ import AddToCartIcon from "@expo/vector-icons/AntDesign";
 import WishlistIcon from "@expo/vector-icons/AntDesign";
 import { useNavigation } from "@react-navigation/native";
 import { addToCart } from "../redux/cartSlice";
+
+export const loadFonts = async () => {
+  await Font?.loadAsync({
+    "manrope-regular": require("./../../assets/fonts/Manrope-Regular.ttf"),
+  });
+};
 
 const Products = ({ listData, isLoading, error }) => {
   const navigation = useNavigation();
@@ -27,6 +33,10 @@ const Products = ({ listData, isLoading, error }) => {
       id: id,
     });
   }
+
+  useEffect(() => {
+    loadFonts();
+  }, []);
   return (
     <View style={styles.MainProductsContainer}>
       {error ? (

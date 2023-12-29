@@ -13,7 +13,7 @@ import { selectCartItems } from "../src/redux/cartSlice";
 import { Font } from "expo-font";
 
 export const loadFonts = async () => {
-  await Font.loadAsync({
+  await Font?.loadAsync({
     "manrope-regular": require("../assets/fonts/Manrope-Regular.ttf"),
   });
 };
