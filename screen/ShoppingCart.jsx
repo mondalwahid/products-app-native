@@ -21,7 +21,7 @@ import { Font } from "expo-font";
 
 export const loadFonts = async () => {
   await Font.loadAsync({
-    "manrope-regular": require("../assets/fonts/Manrope-Regular.ttf"),
+    manroperegular: require("../assets/fonts/Manrope-Regular.ttf"),
   });
 };
 
@@ -99,7 +99,7 @@ const ShoppingCart = () => {
                 display: "center",
               }}
             >
-              <Text style={{ fontFamily: "manrope-regular" }}>
+              <Text style={{ fontFamily: "manroperegular" }}>
                 Nothing Added to the Cart!
               </Text>
             </View>
@@ -149,13 +149,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "500",
     color: "#1E222B",
-    fontFamily: "manrope-regular",
+    fontFamily: "manroperegular",
   },
   PriceStyles: {
     fontSize: 14,
     fontWeight: "400",
     color: "#1E222B",
-    fontFamily: "manrope-regular",
+    fontFamily: "manroperegular",
   },
   CounterContainer: {
     display: "flex",
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "500",
     color: "#1E222B",
-    fontFamily: "manrope-regular",
+    fontFamily: "manroperegular",
   },
   DividerStyles: {
     borderWidth: 0.5,

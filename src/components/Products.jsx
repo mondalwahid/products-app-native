@@ -12,10 +12,11 @@ import AddToCartIcon from "@expo/vector-icons/AntDesign";
 import WishlistIcon from "@expo/vector-icons/AntDesign";
 import { useNavigation } from "@react-navigation/native";
 import { addToCart } from "../redux/cartSlice";
+import * as Font from "expo-font";
 
 export const loadFonts = async () => {
   await Font?.loadAsync({
-    "manrope-regular": require("./../../assets/fonts/Manrope-Regular.ttf"),
+    manroperegular: require("./../../assets/fonts/Manrope-Regular.ttf"),
   });
 };
 
@@ -159,12 +160,12 @@ const styles = StyleSheet.create({
     color: "#1E222B",
     fontSize: 14,
     fontWeight: "600",
-    fontFamily: "manrope-regular",
+    fontFamily: "manroperegular",
   },
   TitleStyles: {
     color: "#616A7D",
     fontSize: 12,
     fontWeight: "400",
-    fontFamily: "manrope-regular",
+    fontFamily: "manroperegular",
   },
 });

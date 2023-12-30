@@ -4,7 +4,7 @@ import { Font } from "expo-font";
 
 export const loadFonts = async () => {
   await Font.loadAsync({
-    "manrope-regular": require("../../assets/fonts/Manrope-Regular.ttf"),
+    manroperegular: require("../../assets/fonts/Manrope-Regular.ttf"),
   });
 };
 
@@ -46,7 +46,7 @@ const Bottombar = () => {
               color: "#616A7D",
               fontSize: 14,
               fontWeight: "400",
-              fontFamily: "manrope-regular",
+              fontFamily: "manroperegular",
             }}
           >
             Subtotal
@@ -56,7 +56,7 @@ const Bottombar = () => {
               color: "#1E222B",
               fontSize: 14,
               fontWeight: "500",
-              fontFamily: "manrope-regular",
+              fontFamily: "manroperegular",
             }}
           >
             $35.96
@@ -76,7 +76,7 @@ const Bottombar = () => {
               color: "#616A7D",
               fontSize: 14,
               fontWeight: "400",
-              fontFamily: "manrope-regular",
+              fontFamily: "manroperegular",
             }}
           >
             Delivery
@@ -86,7 +86,7 @@ const Bottombar = () => {
               color: "#1E222B",
               fontSize: 14,
               fontWeight: "500",
-              fontFamily: "manrope-regular",
+              fontFamily: "manroperegular",
             }}
           >
             $2.00
@@ -106,7 +106,7 @@ const Bottombar = () => {
               color: "#616A7D",
               fontSize: 14,
               fontWeight: "400",
-              fontFamily: "manrope-regular",
+              fontFamily: "manroperegular",
             }}
           >
             Total
@@ -116,7 +116,7 @@ const Bottombar = () => {
               color: "#1E222B",
               fontSize: 14,
               fontWeight: "500",
-              fontFamily: "manrope-regular",
+              fontFamily: "manroperegular",
             }}
           >
             $37.96
@@ -139,7 +139,7 @@ const Bottombar = () => {
               color: "#fff",
               fontSize: 14,
               fontWeight: "600",
-              fontFamily: "manrope-regular",
+              fontFamily: "manroperegular",
             }}
           >
             Proceed To checkout

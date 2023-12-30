@@ -13,20 +13,27 @@ import { addToCart } from "../src/redux/cartSlice";
 import { useSelector } from "react-redux";
 import { selectCartItems } from "../src/redux/cartSlice";
 import { Font } from "expo-font";
+import { SliderBox } from "react-native-image-slider-box";
 
 export const loadFonts = async () => {
   await Font.loadAsync({
-    "manrope-regular": require("../assets/fonts/Manrope-Regular.ttf"),
+    manroperegular: require("../assets/fonts/Manrope-Regular.ttf"),
   });
 };
 
 const ProductDetails = () => {
+  const [images, setImages] = useState([
+    "https://source.unsplash.com/1024x768/?nature",
+    "https://source.unsplash.com/1024x768/?water",
+    "https://source.unsplash.com/1024x768/?girl",
+    "https://source.unsplash.com/1024x768/?tree", // Network image
+  ]);
   const cartItems = useSelector(selectCartItems);
   const route = useRoute();
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
-  const { data: productDetails, isLoading, error } = useGetProductDetailsQuery({
+  const { data: productDetails } = useGetProductDetailsQuery({
     id: route.params.id,
   });
 
@@ -97,7 +104,7 @@ const ProductDetails = () => {
                     color: "#fff",
                     fontWeight: "600",
                     fontSize: 14,
-                    fontFamily: "manrope-regular",
+                    fontFamily: "manroperegular",
                   }}
                 >
                   {cartItems?.length}
@@ -113,7 +120,7 @@ const ProductDetails = () => {
                 fontSize: 50,
                 fontWeight: "300",
                 color: "#1E222B",
-                fontFamily: "manrope-regular",
+                fontFamily: "manroperegular",
               }}
             >
               {productDetails?.title}
@@ -123,7 +130,7 @@ const ProductDetails = () => {
                 fontSize: 50,
                 fontWeight: "800",
                 color: "#1E222B",
-                fontFamily: "manrope-regular",
+                fontFamily: "manroperegular",
               }}
             >
               by {productDetails?.brand}
@@ -150,7 +157,7 @@ const ProductDetails = () => {
                 color: "#A1A1AB",
                 fontSize: 14,
                 fontWeight: "400",
-                fontFamily: "manrope-regular",
+                fontFamily: "manroperegular",
               }}
             >
               110 Reviews
@@ -168,7 +175,7 @@ const ProductDetails = () => {
           }}
         >
           {/* <Slider /> */}
-          <Text style={{ fontFamily: "manrope-regular" }}>poiuytrewq</Text>
+          <SliderBox images={productDetails?.images} />
         </View>
 
         {/* Prices, discounts and checkout and add to cart buttons */}
@@ -186,7 +193,7 @@ const ProductDetails = () => {
                 fontWeight: "700",
                 fontSize: 16,
                 color: "#2A4BA0",
-                fontFamily: "manrope-regular",
+                fontFamily: "manroperegular",
               }}
             >
               ${productDetails?.price}
@@ -196,7 +203,7 @@ const ProductDetails = () => {
                 fontWeight: "400",
                 fontSize: 16,
                 color: "#2A4BA0",
-                fontFamily: "manrope-regular",
+                fontFamily: "manroperegular",
               }}
             >
               /KG
@@ -210,7 +217,7 @@ const ProductDetails = () => {
                 marginLeft: 20,
               }}
             >
-              <Text style={{ color: "#FAFBFD", fontFamily: "manrope-regular" }}>
+              <Text style={{ color: "#FAFBFD", fontFamily: "manroperegular" }}>
                 {Math.ceil(productDetails?.discountPercentage)}% OFF
               </Text>
             </View>
@@ -246,7 +253,7 @@ const ProductDetails = () => {
                   color: "#2A4BA0",
                   fontSize: 14,
                   fontWeight: "600",
-                  fontFamily: "manrope-regular",
+                  fontFamily: "manroperegular",
                 }}
               >
                 add to cart
@@ -271,7 +278,7 @@ const ProductDetails = () => {
                   color: "#fff",
                   fontSize: 14,
                   fontWeight: "600",
-                  fontFamily: "manrope-regular",
+                  fontFamily: "manroperegular",
                 }}
               >
                 buy now
@@ -286,7 +293,7 @@ const ProductDetails = () => {
                 color: "#1E222B",
                 fontSize: 16,
                 fontWeight: "400",
-                fontFamily: "manrope-regular",
+                fontFamily: "manroperegular",
               }}
             >
               Details
@@ -297,7 +304,7 @@ const ProductDetails = () => {
                 fontSize: 16,
                 fontWeight: "400",
                 marginTop: 5,
-                fontFamily: "manrope-regular",
+                fontFamily: "manroperegular",
               }}
             >
               {productDetails?.description}
