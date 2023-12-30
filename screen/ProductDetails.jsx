@@ -13,7 +13,6 @@ import { addToCart } from "../src/redux/cartSlice";
 import { useSelector } from "react-redux";
 import { selectCartItems } from "../src/redux/cartSlice";
 import { Font } from "expo-font";
-import { SliderBox } from "react-native-image-slider-box";
 
 export const loadFonts = async () => {
   await Font.loadAsync({
@@ -22,12 +21,6 @@ export const loadFonts = async () => {
 };
 
 const ProductDetails = () => {
-  const [images, setImages] = useState([
-    "https://source.unsplash.com/1024x768/?nature",
-    "https://source.unsplash.com/1024x768/?water",
-    "https://source.unsplash.com/1024x768/?girl",
-    "https://source.unsplash.com/1024x768/?tree", // Network image
-  ]);
   const cartItems = useSelector(selectCartItems);
   const route = useRoute();
   const navigation = useNavigation();
@@ -175,7 +168,7 @@ const ProductDetails = () => {
           }}
         >
           {/* <Slider /> */}
-          <SliderBox images={productDetails?.images} />
+          <Text>Slider Here*</Text>
         </View>
 
         {/* Prices, discounts and checkout and add to cart buttons */}
